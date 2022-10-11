@@ -16,10 +16,8 @@
 
     <ItemGroup>
       <Folder Include="Learning\Controllers" />
-      <Folder Include="Learning\Domain\Services" />
       <Folder Include="Learning\Mapping" />
       <Folder Include="Learning\Resources" />
-      <Folder Include="Learning\Services" />
     </ItemGroup>
 
 </Project>
