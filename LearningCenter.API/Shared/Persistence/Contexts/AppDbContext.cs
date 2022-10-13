@@ -1,4 +1,5 @@
 using LearningCenter.API.Learning.Domain.Models;
+using LearningCenter.API.Shared.Extensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace LearningCenter.API.Shared.Persistence.Contexts;
@@ -23,5 +24,8 @@ public class AppDbContext : DbContext
             .IsRequired().HasMaxLength(30);
         
 
+        // Apply Snake Case Naming Convention
+        
+        builder.UseSnakeCaseNamingConvention();
     }
 }
