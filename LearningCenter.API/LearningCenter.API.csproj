@@ -15,7 +15,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Learning\Controllers" />
       <Folder Include="Learning\Mapping" />
       <Folder Include="Learning\Resources" />
     </ItemGroup>
