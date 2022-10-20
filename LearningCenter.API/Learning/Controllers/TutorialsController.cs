@@ -1,3 +1,4 @@
+using System.Net.Mime;
 using AutoMapper;
 using LearningCenter.API.Learning.Domain.Models;
 using LearningCenter.API.Learning.Domain.Services;
@@ -9,6 +10,7 @@ namespace LearningCenter.API.Learning.Controllers;
 
 [ApiController]
 [Route("/api/v1/[controller]")]
+[Produces(MediaTypeNames.Application.Json)]
 public class TutorialsController : ControllerBase
 {
     private readonly ITutorialService _tutorialService;
@@ -36,6 +38,7 @@ public class TutorialsController : ControllerBase
             return BadRequest(ModelState.GetErrorMessages());
 
         var tutorial = _mapper.Map<SaveTutorialResource, Tutorial>(resource);
+        
 
         var result = await _tutorialService.SaveAsync(tutorial);
 

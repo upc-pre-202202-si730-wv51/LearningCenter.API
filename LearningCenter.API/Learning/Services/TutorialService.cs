@@ -13,10 +13,11 @@ public class TutorialService : ITutorialService
     private readonly ICategoryRepository _categoryRepository;
     
 
-    public TutorialService(ITutorialRepository tutorialRepository, IUnitOfWork unitOfWork)
+    public TutorialService(ITutorialRepository tutorialRepository, IUnitOfWork unitOfWork, ICategoryRepository categoryRepository)
     {
         _tutorialRepository = tutorialRepository;
         _unitOfWork = unitOfWork;
+        _categoryRepository = categoryRepository;
     }
 
 
@@ -33,10 +34,10 @@ public class TutorialService : ITutorialService
     public async Task<TutorialResponse> SaveAsync(Tutorial tutorial)
     {
         // Validate Category Id
-
+        
         var existingCategory = await _categoryRepository.FindByIdAsync(tutorial.CategoryId);
 
-        if (existingCategory != null)
+        if (existingCategory == null)
             return new TutorialResponse("Invalid Category");
 
         // Validate Title
