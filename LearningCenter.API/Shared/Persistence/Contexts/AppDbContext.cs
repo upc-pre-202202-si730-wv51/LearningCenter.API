@@ -44,6 +44,21 @@ public class AppDbContext : DbContext
             .HasForeignKey(p => p.CategoryId);
         
         
+        // TutorialTag Entity Mapping Configuration
+        builder.Entity<TutorialTag>()
+            .HasKey(p => new { p.TutorialId, p.TagId });
+        builder.Entity<TutorialTag>().ToTable("TutorialTags");
+        builder.Entity<TutorialTag>()
+            .HasOne(p => p.Tutorial)
+            .WithMany(p => p.TutorialTags)
+            .HasForeignKey(p => p.TutorialId);
+
+        builder.Entity<TutorialTag>()
+            .HasOne(p => p.Tag)
+            .WithMany(p => p.TutorialTags)
+            .HasForeignKey(p => p.TagId);
+        
+        
         // Apply Snake Case Naming Convention
         
         builder.UseSnakeCaseNamingConvention();
