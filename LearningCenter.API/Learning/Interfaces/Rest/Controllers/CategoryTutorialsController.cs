@@ -5,7 +5,7 @@ using LearningCenter.API.Learning.Domain.Services;
 using LearningCenter.API.Learning.Resources;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LearningCenter.API.Learning.Controllers;
+namespace LearningCenter.API.Learning.Interfaces.Rest.Controllers;
 
 [ApiController]
 [Route("/api/v1/categories/{categoryId}/tutorials")]

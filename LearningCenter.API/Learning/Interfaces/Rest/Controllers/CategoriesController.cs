@@ -5,7 +5,7 @@ using LearningCenter.API.Learning.Resources;
 using LearningCenter.API.Shared.Extensions;
 using Microsoft.AspNetCore.Mvc;
 
-namespace LearningCenter.API.Learning.Controllers;
+namespace LearningCenter.API.Learning.Interfaces.Rest.Controllers;
 
 [ApiController]
 [Route("/api/v1/[controller]")]
