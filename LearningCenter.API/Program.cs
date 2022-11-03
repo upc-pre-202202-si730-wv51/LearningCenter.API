@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using LearningCenter.API.Learning.Domain.Repositories;
 using LearningCenter.API.Learning.Domain.Services;
 using LearningCenter.API.Learning.Persistence.Repositories;
@@ -6,6 +7,7 @@ using LearningCenter.API.Shared.Domain.Repositories;
 using LearningCenter.API.Shared.Persistence.Contexts;
 using LearningCenter.API.Shared.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -48,7 +50,29 @@ builder.Services.AddAutoMapper(
     typeof(LearningCenter.API.Learning.Mapping.ResourceToModelProfile));
 
 
-builder.Services.AddSwaggerGen();
+builder.Services.AddSwaggerGen(options =>
+    {
+        // Add API Documentation Information
+        options.SwaggerDoc("v1", new OpenApiInfo
+        {
+            Version = "v1",
+            Title = "ACME Learning Center API",
+            Description = "ACME Learning Center RESTful API",
+            TermsOfService = new Uri("https://acme-learning.com/tos"),
+            Contact = new OpenApiContact
+            {
+                Name = "ACME.studio",
+                Url = new Uri("https://acme.studio")
+            },
+            License = new OpenApiLicense
+            {
+                Name = "ACME Learning Center Resources License",
+                Url = new Uri("https://acme-learning.com/license")
+            }
+        });
+        options.EnableAnnotations();
+    }
+);
 
 var app = builder.Build();
 
