@@ -22,7 +22,6 @@
       <Folder Include="Security\Interfaces\Rest" />
       <Folder Include="Security\Mapping" />
       <Folder Include="Security\Persistence" />
-      <Folder Include="Security\Resources" />
       <Folder Include="Security\Services" />
     </ItemGroup>
 
