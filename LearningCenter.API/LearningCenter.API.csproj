@@ -22,7 +22,6 @@
 
     <ItemGroup>
       <Folder Include="Security\Authorization\Attributes" />
-      <Folder Include="Security\Authorization\Handlers" />
       <Folder Include="Security\Authorization\Middleware" />
       <Folder Include="Security\Interfaces\Rest" />
       <Folder Include="Security\Services" />
