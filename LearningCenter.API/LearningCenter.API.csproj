@@ -17,4 +17,16 @@
         <PackageReference Include="Swashbuckle.AspNetCore.Annotations" Version="6.4.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Security\Authorization" />
+      <Folder Include="Security\Domain\Repositories" />
+      <Folder Include="Security\Domain\Services\Communication" />
+      <Folder Include="Security\Exceptions" />
+      <Folder Include="Security\Interfaces\Rest" />
+      <Folder Include="Security\Mapping" />
+      <Folder Include="Security\Persistence" />
+      <Folder Include="Security\Resources" />
+      <Folder Include="Security\Services" />
+    </ItemGroup>
+
 </Project>

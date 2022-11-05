@@ -4,6 +4,7 @@ using LearningCenter.API.Learning.Domain.Models;
 using LearningCenter.API.Learning.Domain.Services;
 using LearningCenter.API.Learning.Resources;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace LearningCenter.API.Learning.Interfaces.Rest.Controllers;
 
@@ -22,6 +23,12 @@ public class CategoryTutorialsController : ControllerBase
     }
 
     [HttpGet]
+    [SwaggerOperation(
+        Summary = "Get All Tutorials for given Category",
+        Description = "Get existing Tutorials associated with the specified Category",
+        OperationId = "GetCategoryTutorials",
+        Tags = new[] { "Categories" }
+        )]
     public async Task<IEnumerable<TutorialResource>> GetAllByCategoryIdAsync(int categoryId)
     {
         var tutorials = await _tutorialService.ListByCategoryIdAsync(categoryId);
