@@ -21,7 +21,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Security\Authorization\Attributes" />
       <Folder Include="Security\Interfaces\Rest" />
       <Folder Include="Security\Services" />
     </ItemGroup>
