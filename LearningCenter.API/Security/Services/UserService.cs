@@ -27,9 +27,20 @@ public class UserService : IUserService
     }
 
 
-    public Task<AuthenticateResponse> Authenticate(AuthenticateRequest model)
+    public async Task<AuthenticateResponse> Authenticate(AuthenticateRequest model)
     {
-        throw new NotImplementedException();
+        // Find Username
+        var user = await _userRepository.FindByUsernameAsync(model.Username);
+        
+        // Validate Password
+        if (user == null || !BCryptNet.Verify(model.Password, user.PasswordHash))
+            // On Error throw Exception
+            throw new AppException("Username or password is incorrect");
+
+        // On Authentication successful 
+        var response = _mapper.Map<AuthenticateResponse>(user);
+        response.Token = _jwtHandler.GenerateToken(user);
+        return response;
     }
 
     public async Task<IEnumerable<User>> ListAsync()
