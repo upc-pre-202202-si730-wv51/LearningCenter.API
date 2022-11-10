@@ -79,14 +79,47 @@ public class UserService : IUserService
         }
     }
 
-    public Task UpdateAsync(int id, UpdateRequest model)
+    public async Task UpdateAsync(int id, UpdateRequest model)
     {
-        throw new NotImplementedException();
+        var user = GetById(id);
+        
+        // Validate
+        var userWithExistingName = await _userRepository.FindByUsernameAsync(model.Username);
+        if (userWithExistingName != null && !userWithExistingName.Id.Equals(user.Id))
+            throw new AppException($"Username '{model.Username}' is already taken");
+
+        // Hash password if it has been entered
+        if (!string.IsNullOrEmpty(model.Password))
+            user.PasswordHash = BCryptNet.HashPassword(model.Password);
+
+        // Transfer model to user and save
+        _mapper.Map(model, user);
+        try
+        {
+            _userRepository.Update(user);
+            await _unitOfWork.CompleteAsync();
+        }
+        catch (Exception e)
+        {
+            throw new AppException($"An error occurred while updating the user: {e.Message}");
+        }
+        
+
     }
 
-    public Task DeleteAsync(int id)
+    public async Task DeleteAsync(int id)
     {
-        throw new NotImplementedException();
+        var user = GetById(id);
+
+        try
+        {
+            _userRepository.Remove(user);
+            await _unitOfWork.CompleteAsync();
+        }
+        catch (Exception e)
+        {
+            throw new AppException($"An error occurred while deleting the user: {e.Message}");
+        }
     }
     
     // Helper methods
