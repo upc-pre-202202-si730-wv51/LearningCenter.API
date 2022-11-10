@@ -6,6 +6,7 @@ using LearningCenter.API.Learning.Services;
 using LearningCenter.API.Security.Authorization.Handlers.Implementations;
 using LearningCenter.API.Security.Authorization.Handlers.Interfaces;
 using LearningCenter.API.Security.Authorization.Middleware;
+using LearningCenter.API.Security.Authorization.Settings;
 using LearningCenter.API.Security.Domain.Repositories;
 using LearningCenter.API.Security.Domain.Services;
 using LearningCenter.API.Security.Persistence;
@@ -64,6 +65,7 @@ builder.Services.AddAutoMapper(
     typeof(LearningCenter.API.Security.Mapping.ResourceToModelProfile));
 
 
+
 builder.Services.AddSwaggerGen(options =>
     {
         // Add API Documentation Information
@@ -88,6 +90,11 @@ builder.Services.AddSwaggerGen(options =>
     }
 );
 
+
+// AppSettings Configuration
+builder.Services.Configure<AppSettings>(builder.Configuration.GetSection("AppSettings"));
+    
+    
 var app = builder.Build();
 
 // Validation for ensuring Database Objects are created
